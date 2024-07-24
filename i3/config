@@ -291,20 +291,20 @@ bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
 ## App shortcuts
 bindsym $mod+w exec --no-startup-id /usr/bin/firefox
 bindsym $mod+n exec --no-startup-id /usr/bin/thunar
-bindsym Print exec --no-startup-id scrot ~/%Y-%m-%d-%T-screenshot.png -e 'gimp ~/%Y-%m-%d-%T-screenshot.png' && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
+bindsym --release Print exec --no-startup-id notify-send -i camera-photo "Screenshot saved to ~/Pictures/Screenshots/$(date +"%Y-%m-%d-%T")-screenshot.png" && scrot -d 2 ~/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png -f -e 'gimp ~/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png -f'
 
 ## Take screenshot with `scrot` via mouse drag
 # saves the file first to `/tmp/screenshot.png`
 # moves the file to home folder with datetimestamp file name
 # open gimp that datetimestime filename
-bindsym --release $mod+Shift+s exec scrot /tmp/screenshot.png -s -f && mv /tmp/screenshot.png "$(date +%Y-%m-%d-%T)-screenshot.png" && gimp "$(date +%Y-%m-%d-%T)-screenshot.png"
+bindsym --release $mod+Shift+s exec scrot /tmp/screenshot.png -s -f && mv /tmp/screenshot.png "/home/stifmiester/Pictures/Screenshots/$(date +%Y-%m-%d-%T)-snip.png" && notify-send -i camera-photo "Screenshot saved to ~/Pictures/Screenshots/$(date +"%Y-%m-%d-%T")-snip.png" && gimp  -f "/home/stifmiester/Pictures/Screenshots/$(date +%Y-%m-%d-%T)-snip.png" 
 
 # Power Profiles menu switcher (rofi)
 bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
 
 ##########################################
 # configuration for workspace behaviour: #
-##########################################
+##########################################$
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -334,7 +334,7 @@ workspace $ws5 output DPI-1
 #workspace $ws4 output HDMI-0
 #workspace $ws5 output HDMI-0
 
-# move focused workspace between monitors
+# move focused workspace between monitorsL
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
 
@@ -349,7 +349,7 @@ assign [class="xfreerdp"] $ws5
 assign [class="microsoft teams - preview"] $ws2
 
 # automatic set focus new window if it opens on another workspace than the current:
-#for_window [class=Xfce4-terminal] focus
+#for_window [class=Xfce4-terminal] focusL
 #for_window [class=(?i)firefox] focus
 #for_window [class=Thunar] focus
 #for_window [class=Thunderbird] focus
@@ -467,13 +467,13 @@ exec --no-startup-id ~/vmstart.sh
 # you need to have tray apps started manually one by one:
 
 # start blueberry app for managing bluetooth devices from tray:
-#exec --no-startup-id blueberry-tray
+exec --no-startup-id blueberry-tray
 
 # networkmanager-applet
 exec --no-startup-id nm-applet
 
 # clipman-applet
-#exec --no-startup-id xfce4-clipman-plugin
+exec --no-startup-id xfce4-clipman
 
 ##################
 # floating rules #
