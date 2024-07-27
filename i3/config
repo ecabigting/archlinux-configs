@@ -320,7 +320,7 @@ set $ws4 "4"
 set $ws5 "5:"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8:"
+set $ws8 "8:"
 set $ws9 "9:"
 set $ws10 "10:"
 
@@ -328,8 +328,10 @@ set $ws10 "10:"
 # where you have to replace VGA-0/HDMI-0 with the names for your displays
 # you can get from xrandr command
 workspace $ws1 output DPI-1
-workspace $ws2 output HDMI-1
 workspace $ws5 output DPI-1
+workspace $ws2 output HDMI-1
+workspace $ws8 output HDMI-1
+workspace $ws9 output HDMI-1
 #workspace $ws3 output HDMI-0
 #workspace $ws4 output HDMI-0
 #workspace $ws5 output HDMI-0
@@ -344,9 +346,12 @@ bindsym $mod+Ctrl+less move workspace to output left
 #assign [class="Thunar"] $ws3
 #assign [class="thunderbird"] $ws4
 #assign [class="TelegramDesktop"] $ws5
+assign [class="Brave-browser"] $ws1
 assign [class="Spotify"] $ws9
 assign [class="xfreerdp"] $ws5
-assign [class="microsoft teams - preview"] $ws2
+assign [class="Microsoft Teams - Preview"] $ws2
+assign [class="Gimp"] $ws8
+assign [class="feh"] $ws8
 
 # automatic set focus new window if it opens on another workspace than the current:
 #for_window [class=Xfce4-terminal] focusL
@@ -356,6 +361,9 @@ assign [class="microsoft teams - preview"] $ws2
 #for_window [class=TelegramDesktop] focus
 for_window [class="Spotify"] focus
 for_window [class="xfreerdp"] focus
+for_window [class="Gimp"] focus
+for_window [class="feh"] focus
+for_window [class="microsoft teams - preview"] focus
 
 
 ##############
@@ -419,8 +427,10 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
-# exec --no-startup-id sleep 2 && nitrogen --restore
-exec --no-startup-id sleep 1 && feh --bg-fill ~/src/devmachine-dot-files/wallpapers/75.png
+#exec --no-startup-id sleep 2 && nitrogen --restore
+#exec --no-startup-id sleep 1 && feh --bg-fill ~/src/devmachine-dot-files/wallpapers/54.png
+exec --no-startup-id sleep 1 && variety
+
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
@@ -458,7 +468,7 @@ exec --no-startup-id /usr/bin/dunst
 #exec --no-startup-id sleep 3 && thunar
 exec --no-startup-id sleep 2 && brave
 # auto starting VM on qemu and then start xfreerdp
-exec --no-startup-id ~/vmstart.sh
+#exec --no-startup-id ~/vmstart.sh
 
 ###############
 # system tray #
@@ -475,6 +485,9 @@ exec --no-startup-id nm-applet
 # clipman-applet
 exec --no-startup-id xfce4-clipman
 
+# always open the keyboard layout on WORKSPACE 8
+exec --no-startup-id sleep 160 && feh /home/stifmiester/vmshare/stifmiester-lily58KeyMaps_mercury.png
+
 ##################
 # floating rules #
 ##################
@@ -483,7 +496,9 @@ exec --no-startup-id xfce4-clipman
 for_window [class="Yad" instance="yad"] floating enable
 for_window [class="Galculator" instance="galculator"] floating enable
 for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+for_window [class="Variety" instance="Variety"] floating enable
 for_window [class="vlc" instance="vlc"] floating enable
+for_window [class="feh" instance="feh"] floating enable, move position 3729 px 0 px
 
 # set floating (nontiling) for special apps
 for_window [class="Xsane" instance="xsane"] floating enable
