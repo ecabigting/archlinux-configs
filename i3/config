@@ -23,7 +23,8 @@
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango: Noto Sans Regular 10
+#font pango: Noto Sans Regular 10
+font pango: MesloLGS Nerd Font Propo Bold 11
 
 # set the mod key to the winkey:
 set $mod Mod4
@@ -327,11 +328,11 @@ set $ws10 "10:"
 # use workspaces on different displays:
 # where you have to replace VGA-0/HDMI-0 with the names for your displays
 # you can get from xrandr command
-workspace $ws1 output DPI-1
-workspace $ws5 output DPI-1
-workspace $ws2 output HDMI-1
-workspace $ws8 output HDMI-1
-workspace $ws9 output HDMI-1
+workspace $ws1 output DPI-0
+workspace $ws5 output DPI-0
+workspace $ws2 output HDMI-0
+workspace $ws8 output HDMI-0
+workspace $ws9 output HDMI-0
 #workspace $ws3 output HDMI-0
 #workspace $ws4 output HDMI-0
 #workspace $ws5 output HDMI-0
@@ -550,7 +551,7 @@ client.urgent		    	$urgentred	$urgentred	$white		$purple		$yellowbrown
 # Start i3bar to display a workspace bar
 # (plus the system information i3status finds out, if available)
 bar {
-		font pango: Noto Sans Regular 10
+		font pango: Noto Sans Regular 11
 		status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	    	position bottom
 #	    	i3bar_command i3bar --transparency
