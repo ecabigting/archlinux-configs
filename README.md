@@ -1,4 +1,3 @@
-
 # Install `oh-my-zsh`
 
 - Instal zsh from arch linux
@@ -70,7 +69,7 @@ zstyle ':omz:plugins:nvm' lazy yes`
 
 Download `dotnet-install.sh` from [here](https://dot.net/v1/dotnet-install.sh)
 
-Change to execute   `dotnet-install.sh`
+Change to execute `dotnet-install.sh`
 
 ```zsh
 $ chmod +x dotnet-install.sh
@@ -105,8 +104,6 @@ Where `/usr/share/dotnet/` in the command is the path and the additional `dotnet
   > For `vscode` get from [here](/Fonts/vscode/)
 - Open `~/.Xresources` and change the font for **xterm** to this: `XTerm*faceName:          MesloLGS NF`
 - Open `vscode` and set the terminal font by opening _Settings ->_ **search: terminal font** and set the value to `MesloLGL Nerd Font`
-
-
 
 # Installing `npm`
 
@@ -395,3 +392,64 @@ Add the following below:
         Option "AccelProfile" "flat"  #disable mouse accelaration
         Option "AccelSpeed" "-0.5"    #mouse speed beteen -1 and 1
 ```
+
+# Spotify Theme
+
+Install `spicetify`
+
+```zsh
+yay -S spicetify-cli
+```
+
+Download themes
+
+```zsh
+git clone --depth=1 https://github.com/spicetify/spicetify-themes.git
+```
+
+Copy the files to the themes folder
+
+```zsh
+cd spicetify-themes
+```
+
+then
+
+```zsh
+cp -r * ~/.config/spicetify/Themes
+```
+
+Choose which theme to apply just by running:
+
+```bash
+spicetify config current_theme THEME_NAME
+```
+
+Some themes have 2 or more different color schemes. After selecting the theme you can switch between them with:
+
+```bash
+spicetify config color_scheme SCHEME_NAME
+```
+
+# Cava audio visualizer
+
+Install `cava`
+
+```zsh
+pacman -S base-devel fftw alsa-lib iniparser pulseaudio autoconf-archive pkgconf
+```
+
+Get the themes from [catppuccin cava](https://github.com/catppuccin/cava)
+
+1. Choose your flavor.
+2. Choose your background variant: opaque or transparent.
+3. Copy the contents of `themes/<flavor>.cava` or `themes/<flavor>-transparent.cava` into your Cava config file (usually located at: `$HOME/.config/cava/`), replacing the existing gradient settings.
+4. Reload cava if it was already playing.
+
+# xfce4-terminal color schemes
+
+Get the themes from [catppuccin xfce4-terminal](https://github.com/catppuccin/xfce4-terminal)
+
+1. Download and move your flavor of choice from [`themes/`](./themes/) to `~/.local/share/xfce4/terminal/colorschemes`.
+2. Open Xfce Terminal and go to **Preferences** > **Colors** > **Presets**.
+3. Choose your flavor in the dropdown.

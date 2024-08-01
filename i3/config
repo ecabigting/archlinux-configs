@@ -321,17 +321,16 @@ set $ws4 "4"
 set $ws5 "5:"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8:"
-set $ws9 "9:"
-set $ws10 "10:"
+set $ws8 "8"
+set $ws9 "9:"
+set $ws10 "10"
 
 # use workspaces on different displays:
 # where you have to replace VGA-0/HDMI-0 with the names for your displays
 # you can get from xrandr command
 workspace $ws1 output DPI-0
-workspace $ws5 output DPI-0
 workspace $ws2 output HDMI-0
-workspace $ws8 output HDMI-0
+workspace $ws5 output DPI-0
 workspace $ws9 output HDMI-0
 #workspace $ws3 output HDMI-0
 #workspace $ws4 output HDMI-0
@@ -348,23 +347,22 @@ bindsym $mod+Ctrl+less move workspace to output left
 #assign [class="thunderbird"] $ws4
 #assign [class="TelegramDesktop"] $ws5
 assign [class="Brave-browser"] $ws1
-assign [class="Spotify"] $ws9
-assign [class="xfreerdp"] $ws5
 assign [class="Microsoft Teams - Preview"] $ws2
-assign [class="Gimp"] $ws8
-assign [class="feh"] $ws8
+assign [class="firefox"] $ws2
+assign [class="xfreerdp"] $ws5
+assign [class="Spotify"] $ws9
+assign [class="Gimp"] $ws9
 
 # automatic set focus new window if it opens on another workspace than the current:
-#for_window [class=Xfce4-terminal] focusL
+#for_window [class=Xfce4-terminal] focus
 #for_window [class=(?i)firefox] focus
 #for_window [class=Thunar] focus
 #for_window [class=Thunderbird] focus
 #for_window [class=TelegramDesktop] focus
-for_window [class="Spotify"] focus
 for_window [class="xfreerdp"] focus
-for_window [class="Gimp"] focus
-for_window [class="feh"] focus
 for_window [class="microsoft teams - preview"] focus
+# for_window [class="Spotify"] focus
+# for_window [class="Gimp"] focus
 
 
 ##############
@@ -467,9 +465,24 @@ exec --no-startup-id /usr/bin/dunst
 #exec --no-startup-id sleep 2 && xfce4-terminal
 #exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
 #exec --no-startup-id sleep 3 && thunar
+
+# Start Brave Browser on Workspace 1
 exec --no-startup-id sleep 2 && brave
+
+# Load Layout from w9.json file 
+exec --no-startup-id sleep 5 && i3-msg workspace $ws9 && i3-msg "append_layout ~/.config/i3/ws9.json"
+# Open Gimp with Image
+exec --no-startup-id sleep 6 && gimp -s /home/stifmiester/vmshare/stifmiester-lily58KeyMaps_mercury.png 
+# Open Spotify
+exec --no-startup-id sleep 7 && spotify 
+# Load cava on xfce4-terminal
+exec --no-startup-id sleep 8 && xfce4-terminal -x cava
+
+# open firefox and teams WORKSPACE 2
+exec --no-startup-id sleep 9 && teams && firefox
+
 # auto starting VM on qemu and then start xfreerdp
-#exec --no-startup-id ~/vmstart.sh
+exec --no-startup-id sleep 10 && ~/vmstart.sh
 
 ###############
 # system tray #
@@ -485,9 +498,6 @@ exec --no-startup-id nm-applet
 
 # clipman-applet
 exec --no-startup-id xfce4-clipman
-
-# always open the keyboard layout on WORKSPACE 8
-exec --no-startup-id sleep 160 && feh /home/stifmiester/vmshare/stifmiester-lily58KeyMaps_mercury.png
 
 ##################
 # floating rules #
@@ -508,6 +518,7 @@ for_window [class="qt5ct" instance="qt5ct"] floating enable
 for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
 for_window [class="Pamac-manager"] floating enable
+for_window [class="steam_app_238960"] floating enable
 for_window [window_role="About"] floating enable
 
 # set border of floating window
