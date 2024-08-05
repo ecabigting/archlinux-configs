@@ -233,10 +233,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+h split h 
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+v split v 
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -279,7 +279,7 @@ bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/scripts/volume_brightnes
 
 # mic mute toggle
 bindsym XF86AudioMicMute exec amixer sset Capture toggle
- 
+
 # audio control
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause 
 # Above line will also work for pausing
@@ -322,19 +322,16 @@ set $ws5 "5:"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9:"
+set $ws9 "9:"
 set $ws10 "10"
 
 # use workspaces on different displays:
 # where you have to replace VGA-0/HDMI-0 with the names for your displays
 # you can get from xrandr command
-workspace $ws1 output DPI-0
+workspace $ws1 output DP-0
 workspace $ws2 output HDMI-0
-workspace $ws5 output DPI-0
+workspace $ws5 output DP-0
 workspace $ws9 output HDMI-0
-#workspace $ws3 output HDMI-0
-#workspace $ws4 output HDMI-0
-#workspace $ws5 output HDMI-0
 
 # move focused workspace between monitorsL
 bindsym $mod+Ctrl+greater move workspace to output right
@@ -360,7 +357,7 @@ assign [class="Gimp"] $ws9
 #for_window [class=Thunderbird] focus
 #for_window [class=TelegramDesktop] focus
 for_window [class="xfreerdp"] focus
-for_window [class="microsoft teams - preview"] focus
+# for_window [class="microsoft teams - preview"] focus
 # for_window [class="Spotify"] focus
 # for_window [class="Gimp"] focus
 
@@ -466,23 +463,30 @@ exec --no-startup-id /usr/bin/dunst
 #exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
 #exec --no-startup-id sleep 3 && thunar
 
-# Start Brave Browser on Workspace 1
+
+
+# always open the keyboard layout screnshot on Gimo and spotify on WORKSPACE 9 then open cava audio visualizer
+# exec --no-startup-id sleep 5 && i3-msg workspace $ws9 && i3-msg "append_layout ~/.config/i3/ws9.json"
+# exec --no-startup-id sleep 6 && gimp -s /home/stifmiester/vmshare/stifmiester-lily58KeyMaps_mercury.png 
+# exec --no-startup-id sleep 7 && spotify 
+# exec --no-startup-id sleep 8 && xfce4-terminal -x cava
+
+exec --no-startup-id sleep 1 && i3-msg workspace $ws9 && i3-msg "append_layout ~/.config/i3/ws9.json"
+exec --no-startup-id sleep 1.2 && xfce4-terminal -x unimatrix -af -c=magenta -s=88
+exec --no-startup-id sleep 1 && gimp -s /home/stifmiester/vmshare/stifmiester-lily58KeyMaps_mercury.png 
+exec --no-startup-id sleep 1 && spotify 
+exec --no-startup-id sleep 1.5 && xfce4-terminal -x cava
+
+#Start Brave Browser on Workspace 1
 exec --no-startup-id sleep 2 && brave
 
-# Load Layout from w9.json file 
-exec --no-startup-id sleep 5 && i3-msg workspace $ws9 && i3-msg "append_layout ~/.config/i3/ws9.json"
-# Open Gimp with Image
-exec --no-startup-id sleep 6 && gimp -s /home/stifmiester/vmshare/stifmiester-lily58KeyMaps_mercury.png 
-# Open Spotify
-exec --no-startup-id sleep 7 && spotify 
-# Load cava on xfce4-terminal
-exec --no-startup-id sleep 8 && xfce4-terminal -x cava
+# auto starting VM on qemu and then start xfreerdp
+exec --no-startup-id sleep 10 && ~/.config/vmstart.sh
 
 # open firefox and teams WORKSPACE 2
-exec --no-startup-id sleep 9 && teams && firefox
+#exec --no-startup-id sleep 3 && teams && firefox
+exec --no-startup-id [[ $(date +%u) -lt 6 ]] && { sleep 3 && teams && firefox; }
 
-# auto starting VM on qemu and then start xfreerdp
-exec --no-startup-id sleep 10 && ~/vmstart.sh
 
 ###############
 # system tray #
@@ -536,24 +540,61 @@ for_window [class="urxvt"] border pixel 1
 ######################################
 
 # Define colors variables:
-set $darkbluetrans	#08052be6
-set $darkblue		#08052b
-set $lightblue		#5294e2
-set $urgentred		#e53935
-set $white		#ffffff
-set $black		#000000
-set $purple		#e345ff
-set $darkgrey		#383c4a
-set $grey		#b0b5bd
-set $mediumgrey		#8b8b8b
-set $yellowbrown	#e1b700
+# set $darkbluetrans	#08052be6
+# set $darkblue		#08052b
+# set $lightblue		#5294e2
+# set $urgentred		#e53935
+# set $white		#ffffff
+# set $black		#000000
+# set $purple		#e345ff
+# set $darkgrey		#383c4a
+# set $grey		#b0b5bd
+# set $mediumgrey		#8b8b8b
+# set $yellowbrown	#e1b700
 
-# define colors for windows:
-#class		        	border		bground		text		indicator	child_border
-client.focused		    	$lightblue	$darkblue	$white		$purple		$mediumgrey
-client.unfocused	    	$darkblue	$darkblue	$grey		$purple		$darkgrey
-client.focused_inactive		$darkblue	$darkblue	$grey		$purple		$black
-client.urgent		    	$urgentred	$urgentred	$white		$purple		$yellowbrown
+### Catppuccin Mocha
+set $rosewater #f4dbd6
+set $flamingo #f0c6c6
+set $pink #f5bde6
+set $mauve #c6a0f6
+set $red #ed8796
+set $maroon #ee99a0
+set $peach #f5a97f
+set $yellow #eed49f
+set $green #a6da95
+set $teal #8bd5ca
+set $sky #91d7e3
+set $sapphire #7dc4e4
+set $blue #8aadf4
+set $lavender #b7bdf8
+set $text #cad3f5
+set $subtext1 #b8c0e0
+set $subtext0 #a5adcb
+set $overlay2 #939ab7
+set $overlay1 #8087a2
+set $overlay0 #6e738d
+set $surface2 #5b6078
+set $surface1 #494d64
+set $surface0 #363a4f
+set $base #24273a
+set $mantle #1e2030
+set $crust #181926
+
+# define colors for windows: EOS Theme
+#class		        		border		bground		text		indicator	child_border
+# client.focused		    $lightblue	$darkblue	$white		$purple		$mediumgrey
+# client.unfocused	    	$darkblue	$darkblue	$grey		$purple		$darkgrey
+# client.focused_inactive	$darkblue	$darkblue	$grey		$purple		$black
+# client.urgent		    	$urgentred	$urgentred	$white		$purple		$yellowbrown
+
+### Catppuccin Colors
+# target                 title     bg    text   indicator  border
+client.focused           $lavender $base $text  $green  $lavender
+client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
+client.unfocused         $overlay0 $base $text  $rosewater $overlay0
+client.urgent            $peach    $base $peach $overlay0  $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
 
 ############################################
 # bar settings (input comes from i3blocks) #
@@ -562,31 +603,45 @@ client.urgent		    	$urgentred	$urgentred	$white		$purple		$yellowbrown
 # Start i3bar to display a workspace bar
 # (plus the system information i3status finds out, if available)
 bar {
-		font pango: Noto Sans Regular 11
+		font pango: Noto Sans Regular 11, Icons 12
 		status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	    	position bottom
-#	    	i3bar_command i3bar --transparency
-# it could be that you have no primary display set: set one (xrandr --output <output> --primary)
-# reference: https://i3wm.org/docs/userguide.html#_tray_output
-		    tray_output primary
-		    tray_padding 0
+		position bottom
+		# i3bar_command i3bar --transparency
+		# it could be that you have no primary display set: set one (xrandr --output <output> --primary)
+		# reference: https://i3wm.org/docs/userguide.html#_tray_output
+		tray_output primary
+		tray_padding 0
 
 # When strip_workspace_numbers is set to yes,
 # any workspace that has a name of the form
 # “[n][:][NAME]” will display only the name.
 strip_workspace_numbers yes
 ##strip_workspace_name no
+	# EOS Colors
+	# colors {
+	# 	separator          $purple
+	# 	background         $darkgrey
+	# 	statusline         $white
+	# 	#                   border 		    bg			txt			indicator
+	# 	focused_workspace	$mediumgrey	   	$grey		$darkgrey	$purple
+	# 	active_workspace	$lightblue      $mediumgrey	$darkgrey	$purple
+	# 	inactive_workspace	$darkgrey   	$darkgrey	$grey		$purple
+	# 	urgent_workspace	$urgentred	    $urgentred	$white		$purple
+	# }
 
-		    colors {
-		    separator          $purple
-		    background         $darkgrey
-		    statusline         $white
-#                          		border 		        bg		txt		indicator
-		focused_workspace	$mediumgrey	   	$grey		$darkgrey	$purple
-		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
-		inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
-		urgent_workspace	$urgentred	    	$urgentred	$white		$purple
-	}
+	### Catppuccin Colors
+	colors {
+		background         $base
+		statusline         $text
+		focused_statusline $text
+		focused_separator  $base
+		focused_workspace  $base $base $green
+		active_workspace   $base $base $blue
+		inactive_workspace $base $base $surface1
+		urgent_workspace   $red $red $base
+		binding_mode       $base $base $surface1
+  	}
+
 }
 
 # you can add different bars for multidisplay setups on each display:
@@ -645,3 +700,8 @@ bindsym $mod+t exec --no-startup-id rofi -show window \
 #exec --no-startup-id greenclip daemon>/dev/null
 #bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard \
 #		-config ~/.config/rofi/rofidmenu.rasi
+
+
+## Caps Lock binding and Num lock
+bindsym --release Caps_Lock exec pkill -SIGRTMIN+10 i3blocks
+bindsym --release Num_Lock exec pkill -SIGRTMIN+10 i3blocks

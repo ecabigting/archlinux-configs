@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+status="$(xset -q | grep Caps | awk '{ print $4 }')"
+lockstatus=""
+color="#cad3f5"
+bgcolor="#24273a"
+
+if [ "$status" == "off" ]; then
+    lockstatus=" A  "
+    color="#cad3f5"
+    bgcolor="#24273a"
+else
+    lockstatus=" A  "
+    color="#ffffff"
+    bgcolor="#181926"
+fi
+
+echo ${lockstatus}
+echo ${lockstatus}
+echo ${color}
+echo ${bgcolor}

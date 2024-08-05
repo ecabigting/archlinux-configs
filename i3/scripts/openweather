@@ -10,10 +10,10 @@ Aborting."; exit 1; }
 
 # To use this script you need to create an API key here https://home.openweathermap.org
 # You need to put your Open Weather APIKEY here:
-APIKEY="keykeykey"
+APIKEY=""
 # And get your Latitute and Longitudes to put in here:
-LAT="XX.XXXX"
-LON="XX.XXXX"
+LAT="XX"
+LON="XX"
 URL="http://api.openweathermap.org/data/2.5/onecall?lat=${LAT}&lon=${LON}&units=metric&exclude=minutely,hourly,daily&APPID=${APIKEY}"
 WEATHER_RESPONSE=$(wget -qO- "${URL}")
 
@@ -84,7 +84,8 @@ if [ "$WEATHER_ALERT" != "null" ]; then
     WARN_END=$(echo "$WEATHER_RESPONSE" | jq '.alerts[0].end')
     WARN_START=$(date -d @"$WARN_START" +%a_%k:%M)
     WARN_END=$(date -d @"$WARN_END" +%a_%k:%M)
-    full_text="${WEATHER_ICON}  ${WEATHER_TEMP}°C: ${DESCRIPTION}  ${WEATHER_ALERT} from ${WARN_START} to ${WARN_END}  "
+    full_text="${WEATHER_ICON} ${WEATHER_TEMP}°C"
+    # full_text="${WEATHER_ICON}  ${WEATHER_TEMP}°C: ${DESCRIPTION}  ${WEATHER_ALERT} from ${WARN_START} to ${WARN_END}  "
 fi
 
 
