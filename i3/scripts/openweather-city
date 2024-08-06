@@ -56,5 +56,3 @@ echo "${WEATHER_ICON} ${WEATHER_TEMP}°C"
 echo "Current Weather"
 echo "${WEATHER_COLOR}"
 # echo "${WEATHER_ICON}  ${WEATHER_TEMP}°C: ${WIND_SPEED} km/h ${WIND_DIR}"
-
-***REMOVED***
