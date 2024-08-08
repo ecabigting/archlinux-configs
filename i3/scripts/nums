@@ -6,16 +6,23 @@ color="#cad3f5"
 bgcolor="#24273a"
 
 if [ "$status" == "off" ]; then
-    lockstatus=" 0  "
+    lockstatus="<span>  0 </span>"
     color="#cad3f5"
     bgcolor="#24273a"
-else
-    lockstatus=" 0  "
-    color="#ffffff"
-    bgcolor="#181926"
-fi
 
-echo ${lockstatus}
-echo ${lockstatus}
-echo ${color}
-echo ${bgcolor}
+    echo ${lockstatus}
+    echo ${lockstatus}
+    echo ${color}
+    echo ${bgcolor}
+    echo "#24273a"
+else
+    lockstatus="<span>  0 </span>"
+    color="#000000"
+    bgcolor="#b7bdf8"
+
+    echo ${lockstatus}
+    echo ${lockstatus}
+    echo ${color}
+    echo ${bgcolor}
+    echo 1
+fi

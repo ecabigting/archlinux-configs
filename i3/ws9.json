@@ -71,11 +71,10 @@
                "y": 9
             },
             "marks": [],
-            "name": "Nelly Hope - All Star - Acoustic",
             "percent": 0.9,
             "swallows": [
                {
-               "class": "Spotify"
+               "class": "Xfce4-terminal"
                }
             ],
             "type": "con"
